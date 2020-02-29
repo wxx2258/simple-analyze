@@ -1,27 +1,35 @@
+(function (modules) {
+  function require(fileName) {
+    const fn = modules[fileName];
 
-            (function(modules) {
-                function require(fileName) {
-                    const fn = modules[fileName];
-        
-                    const module = { exports : {} };
-        
-                    fn(require, module, module.exports);
-        
-                    return module.exports;
-                }
+    const module = {
+      exports: {}
+    };
 
-                require('/Users/wuxiaoxin/Desktop/my-learn/webpack/geektime-webpack-course/code/chapter06/simple-webpack/src/index.js');
-            })({'/Users/wuxiaoxin/Desktop/my-learn/webpack/geektime-webpack-course/code/chapter06/simple-webpack/src/index.js': function (require, module, exports) { "use strict";
+    fn(require, module, module.exports);
 
-var _greeting = require("./greeting.js");
+    return module.exports;
+  }
 
-document.write((0, _greeting.greeting)('Jane')); },'./greeting.js': function (require, module, exports) { "use strict";
+  require('/Users/wuxiaoxin/Desktop/my-learn/webpack/geektime-webpack-course/code/chapter06/simple-webpack/src/index.js');
+})({
+  '/Users/wuxiaoxin/Desktop/my-learn/webpack/geektime-webpack-course/code/chapter06/simple-webpack/src/index.js': function (require, module, exports) {
+    "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.greeting = greeting;
-function greeting(name) {
-  return 'hello' + name;
-} },})
-        
+    var _greeting = require("./greeting.js");
+
+    document.write((0, _greeting.greeting)('Jane'));
+  },
+  './greeting.js': function (require, module, exports) {
+    "use strict";
+
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    exports.greeting = greeting;
+
+    function greeting(name) {
+      return 'hello' + name;
+    }
+  },
+})
